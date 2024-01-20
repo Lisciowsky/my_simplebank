@@ -1,0 +1,39 @@
+# version: "2"
+# cloud:
+#     organization: ""
+#     project: ""
+#     hostname: ""
+# sql: []
+# overrides:
+#     go: null
+# plugins: []
+# rules: []
+# options: {}
+
+version: "2"
+cloud:
+  project: "<PROJECT_ID>"
+sql:
+- schema: "./db/migration/"
+  engine: "postgresql"
+  queries: "./db/query/"
+  gen:
+    go: 
+      package: "db"
+      out: "./db/sqlc"
+      emit_json_tags: true
+      emit_prepared_queries: false
+      emit_interface: false
+      emit_exact_table_names: false
+#   database:
+    # managed: true
+
+#   rules:
+#     - sqlc/db-prepare
+# - schema: "mysql/schema.sql"
+#   queries: "mysql/query.sql"
+#   engine: "mysql"
+#   gen:
+#     go:
+#       package: "db"
+#       out: "mysql"
