@@ -15,9 +15,9 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Install kubectl
-      uses: azure/setup-kubectl@v1
+      uses: azure/setup-kubectl@v3
       with:
-        version: '1.21.3'
+        version: default # default is latest stable
       id: install
 
     - name: Configure AWS credentials
