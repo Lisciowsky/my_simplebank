@@ -46,7 +46,6 @@ jobs:
     - name: Update kubeconfig
       run: |
         aws eks update-kubeconfig --name simple-bank --region us-east-1 
-        kubectl config use-context simple-bank
 
     - name: Verify kubectl
       run: |
