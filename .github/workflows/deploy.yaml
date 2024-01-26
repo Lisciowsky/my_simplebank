@@ -19,6 +19,8 @@ jobs:
         curl -LO "https://dl.k8s.io/release/v1.29.1/bin/linux/amd64/kubectl"
         chmod +x ./kubectl
         sudo mv ./kubectl /usr/local/bin/kubectl
+        which kubectl
+        kubectl version
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -44,7 +46,9 @@ jobs:
         docker push -a $ECR_REGISTRY/$ECR_REPOSITORY
 
     - name: Update kubeconfig
-      run: aws eks update-kubeconfig --name simple-bank --region us-east-1 
+      run: |
+        aws eks update-kubeconfig --name simple-bank --region us-east-1 
+        kubectl config use-context simple-bank
 
     - name: Deploy image to EKS
       run: |
